@@ -1,0 +1,18 @@
+{
+    "number":{
+        "type":"number",
+        "comparator":["lessThan","greaterThan","equals"]
+    },
+    "date":{
+        "type":"date",
+        "comparator":["lessThan","greaterThan","equals"]
+    },
+    "pickList":{
+        "type":"pickList",
+        "comparator":["equals"]
+    },
+    "string":{
+        "type":"string",
+        "comparator":["contains"]
+    }
+}

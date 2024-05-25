@@ -1,0 +1,170 @@
+{% load humanize %}
+<div>
+    <div class="options">
+        <ul>
+            <li>
+                <button onclick="recordUtil.completeReport()" title="{{ icons.refresh.name }}"> {{ icons.refresh.element|safe }} </button>
+            </li>
+            <li>
+                <button onclick="clientUtil.downloadHtml('complete_report')" title="{{ icons.download.name }}"> {{ icons.download.element|safe }} </button>
+            </li>
+        </ul>
+    </div>
+    <div  class="report_body">
+        <table style="width:100%">
+            <tr>
+                <td colspan="2">
+                    <div>
+                        <b>Total Expense</b> : ₹ {{ report.otherDetails.totalExpense|intcomma }} 
+                    </div>
+                </td>
+                <td colspan="2">
+                    <div>
+                        <div><u><b>Category VS Expense</b></u></div>
+                        <br>
+                        {% for categoryId, categoryAmount in report.otherDetails.categoryWiseExpense.items %}
+                            {% if categoryAmount != 0 %}
+                                <b>{{ categoryId }}</b> : ₹ {{ categoryAmount|intcomma }} , 
+                            {% endif %}
+                        {% endfor %} 
+                    </div>
+                </td>
+            </tr>
+        </table>
+    <h2 style="text-align:center;">COMPLETE YEAR WISE REPORT</h2>
+    <table style="width:100%;table-layout: fixed;">
+        <thead >
+            <tr>
+                <td style="width: 15%;">
+                    <b>Year</b>
+                </td>
+                <td style="width: 15%;">
+                    <b>Total Expense</b>
+                </td>
+                <td style="width: 30%;">
+                    <b>Category VS Expense</b>
+                </td>
+                <td style="width: 40%;">
+                    <b>Month VS Expense</b>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                var yearVSMonth = {};
+            </script>
+            {% for year, yearData in report.yearWiseExpense.items %}
+            <tr id="report_row_{{ year }}_body">
+                <td>
+                    {{ year }}
+                </td>
+                <td>
+                    ₹ {{ yearData.otherDetails.totalExpense|intcomma }}
+                </td>
+                <td>
+                    {% for categoryId, categoryAmount in yearData.otherDetails.categoryWiseExpense.items %}
+                        {% if categoryAmount != 0 %}
+                            <b>{{ categoryId }}</b> : {{ categoryAmount|intcomma }} , 
+                        {% endif %}
+                    {% endfor %}  
+                </td>
+                <td>
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Category VS Expense</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for month, monthData in yearData.monthWiseExpense.items %}
+                                {% if monthData.otherDetails.totalExpense != 0 %}
+                                    <tr>
+                                        <td><b>{{ month }}</b> : ₹ {{ monthData.otherDetails.totalExpense|intcomma }}</td>
+                                        <td>
+                                            {% for categoryId, categoryAmount in monthData.categoryWiseExpense.items %}
+                                                {% if categoryAmount != 0 %}
+                                                    <b>{{ categoryId }}</b> : {{ categoryAmount|intcomma }} , 
+                                                {% endif %}
+                                            {% endfor %}     
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <script>
+                monthExpense = {{ yearData.monthWiseExpense|safe }};
+                months = Object.keys(monthExpense);
+                expenses = months.map(function(month) {
+                    return  monthExpense[month].otherDetails.totalExpense;
+                });
+                jsonData = {};
+                for(var i=0;i<months.length;i++){
+                    jsonData[months[i]] = expenses[i];
+                }
+                yearVSMonth[{{ year }}] = jsonData;
+            </script>
+            {% endfor %}
+            <tr>
+                <td colspan="4">
+                    <canvas id="chart_expense_record" width="400" height="80"></canvas>
+                    <script>
+                        var years = Object.keys(yearVSMonth);
+                        var months = Object.keys(yearVSMonth[years[0]]);
+                
+                        var datasets = [];
+                        years.forEach(function(year) {
+                            var yearData = [];
+                            months.forEach(function(month) {
+                                yearData.push(yearVSMonth[year][month]);
+                            });
+                            datasets.push({
+                                label: year,
+                                data: yearData,
+                                fill: false,
+                                borderColor: getRandomColor(),
+                                borderWidth: 2
+                            });
+                        });
+                
+                        // Get canvas element
+                        var ctx = document.getElementById('chart_expense_record').getContext('2d');
+                
+                        // Create line chart
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: months,
+                                datasets: datasets
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                
+                        // Function to generate random color
+                        function getRandomColor() {
+                            var letters = '0123456789ABCDEF';
+                            var color = '#';
+                            for (var i = 0; i < 6; i++) {
+                                color += letters[Math.floor(Math.random() * 16)];
+                            }
+                            return color;
+                        }
+                    </script>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+{% load humanize %}
+<body>
+    <div class="options">
+        <ul>
+            <li>
+                <button onclick="clientUtil.getCreatePage()" title="{{ icons.plus.name }}"> {{ icons.plus.element|safe }} </button>
+            </li>
+            {% if page > 1 %}
+                <li><button onclick="recordUtil.getRecords({{ page|add:'-1' }},document.getElementById('count_per_page').value)" title="{{ icons.previous.name }}"> {{ icons.previous.element|safe }} </button></li>
+            {% else %}
+                <li><button style="cursor:auto" title="{{ icons.previous.name }}"> {{ icons.previous.element|safe }} </button></li>
+            {% endif %}
+            <li><b id="page_count">{{ page }}</b></li>
+            {% if next_page_exists %}
+                <li><button onclick="recordUtil.getRecords({{ page|add:'1' }},document.getElementById('count_per_page').value)" title="{{ icons.next.name }}"> {{ icons.next.element|safe }} </button></li>
+            {% else %}
+                <li><button style="cursor:auto" title="{{ icons.next.name }}"> {{ icons.next.element|safe }} </button></li>
+            {% endif %}
+
+            <li>
+                <select id="count_per_page" onchange="recordUtil.onCountChange(this)">
+                    <option value="{{ record_per_page }}" selected disabled>{{ record_per_page }}</option>
+                    {% if record_per_page != 10 %}
+                        <option value="10" >10</option>
+                    {% endif %}
+                    {% if record_per_page != 20 %}
+                        <option value="20" >20</option>
+                    {% endif %}
+                    {% if record_per_page != 50 %}
+                        <option value="50" >50</option>
+                    {% endif %}
+                </select>
+            </li>
+            <li>
+                <button onclick="recordUtil.getRecords(document.getElementById('page_count').valu,document.getElementById('count_per_page').value)" title="{{ icons.refresh.name }}"> {{ icons.refresh.element|safe }} </button>
+            </li>
+            <li>
+                <button onclick="clientUtil.downloadHtml('expense_records')" title="{{ icons.download.name }}"> {{ icons.download.element|safe }} </button>
+            </li>
+        </ul>     
+    </div>
+    <br>
+    <div>
+        <table id="records">
+            <thead>
+                <tr>
+                    <th><b>CATEGORY NAME</b></th>
+                    <th><b>ADDITIONAL INFO</b></th>
+                    <th><b>AMOUNT</b></th>
+                    <th><b>DATE</b></th>
+                    <th style="width=20px"><b>DELETE</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr id="record_{{ d.expId }}">
+                    <td data-category-name={{ d.category_name }} class="record_edit" onclick="clientUtil.getEditPageById({{ d.expId }})" id="record_category_name_{{ d.expId }}">{{ d.category_name }} {{ d.category_image|safe }}</td>
+                    <td id="record_additional_info_{{ d.expId }}" data-additional-info={{ d.additional_info }}>{{ d.additional_info }}</td>
+                    <td data-amount={{ d.amount }} id="record_amount_{{ d.expId }}">{{ d.amount }}</td>
+                    <td data-date={{ d.date }} id="record_date_{{ d.expId }}">{{ d.date }}</td>
+                    <td class="record_delete" onclick="recordUtil.deleteRecord({{ d.expId }})" title="{{ icons.deleteRecord.name }}">{{ icons.deleteRecord.element|safe }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+
+

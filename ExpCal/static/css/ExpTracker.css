@@ -1,0 +1,305 @@
+:root {
+  --body-BC: #e9ecef;
+
+  --tabHead-BC: #6c757d;
+  --tabHead-FC: #ced4da;
+  --tabHead-BC-hover: #212529;
+
+  --header-BC: #495057;
+  --header-FC: #f8f9fa;
+  --buttons-BC: #6c757d;
+  --buttons-FC: #fcfdfe;
+  --buttons-BC-hover: #212529;
+
+  --Record-Head-BC: #6c757d;
+  --Record-Head-FC: #fcfdfe;
+  --Record-Row-BC: #fafbfc;
+  --Record-Row-BC-hover: #e0e1dd;
+  --Record-Row-FC: #020202;
+  --Record-Row-border-C: #ced4da;
+
+  --CreateEdit-FC: #050606;
+
+  --Report-FC: #050606;
+  --Report-BC: #ffffff;
+  --Report-border-C: #212529;
+  --Report-heading-BC: #ced4da;
+  }
+/*--------MAIN PAGE--------*/
+body{
+  font-family: Tahoma, sans-serif;
+  background-color: var(--body-BC);
+}
+/*--------MAIN PAGE : HEADER--------*/
+header {
+  background-color: var(--header-BC);
+  color: var(--header-FC);
+  padding: 20px;
+  border-radius: 5px;
+  border:1ps solid black;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+header ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 5%;
+  display: flex;
+  align-items: center; /* Center align vertically */
+}
+
+header ul li {
+  margin-right: 10px;
+}
+
+header button {
+  background-color: var(--buttons-BC);
+  color: var(--buttons-FC);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--buttons-BC-hover);
+}
+
+#profile-img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+/*--------MAIN PAGE : TAB HEADS--------*/
+.tab_menu {
+  display: flex;
+  justify-content: flex-start; /* Align tabs to the left */
+  margin-bottom: 20px;
+}
+
+.tab_head_buttons{
+  color: var(--tabHead-FC);
+  padding: 10px 20px;
+  border-radius: 5px 5px 0px 0px;
+  transition: background-color 0.3s;
+  margin-right: 10px; 
+  margin-bottom: -20px;
+  background-color: var(--tabHead-BC);
+  border:none;
+}
+
+.tab_head_buttons:last-child {
+  margin-right: 0; 
+}
+
+.tab_head_buttons:hover {
+  background-color: var(--tabHead-BC-hover);
+  cursor: pointer;
+}
+
+.selected_tab_head{
+  color: var(--tabHead-FC);
+  padding: 10px 20px;
+  border-radius: 5px 5px 0px 0px;
+  transition: background-color 0.3s;
+  margin-right: 10px; 
+  margin-bottom: -20px;
+  border:none;
+  background-color: var(--tabHead-BC-hover);
+}
+.selected_tab_head:hover{
+  background-color: var(--tabHead-BC-hover);
+}
+/*--------MAIN PAGE : TAB common container--------*/
+#tab_container {
+  border-top: 5px solid var(--tabHead-BC-hover);
+}
+/*--------List Page : buttons--------*/
+.options {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.options ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.options ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.options ul li button {
+  padding: 10px 15px;
+  border: none;
+  background-color: var(--buttons-BC);
+  color: var(--buttons-FC);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.options ul li button:hover {
+  background-color: var(--buttons-BC-hover);
+}
+/*--------Record  List --------*/
+#records {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#records th,
+#records td {
+  border: 1px solid var(--Record-Row-border-C);
+  padding: 8px;
+  text-align: left;
+}
+
+#records thead tr {
+  background-color: var(--Record-Head-BC);
+  color: var(--Record-Head-FC);
+}
+
+#records tbody tr {
+  background-color: var(--Record-Row-BC);
+  color: var(--Record-Row-FC);
+}
+#records tbody tr:hover {
+  background-color: var(--Record-Row-BC-hover);
+}
+
+.record_delete {
+  cursor: pointer;
+  text-align: center;
+}
+.record_delete:hover {
+  color:red
+}
+.record_edit{
+  cursor: pointer;
+}
+.record_edit:hover {
+  color:blue
+}
+/*--------Create And Edit Page --------*/
+#create_and_edit_page {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 80%;
+  margin-top: 20px;
+  color: var(--CreateEdit-FC);
+  margin:auto;
+}
+
+#create_and_edit_page h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#create_and_edit_page table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#create_and_edit_page td {
+  padding: 8px;
+}
+
+#create_and_edit_page td:first-child {
+  width: 30%;
+}
+
+#create_and_edit_page input[type="text"],
+#create_and_edit_page input[type="number"],
+#create_and_edit_page input[type="date"],
+#create_and_edit_page select {
+  width: calc(100% - 10px); /* Adjust for padding */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#create_and_edit_page button {
+  padding: 8px 16px;
+  background-color: var(--buttons-BC);
+  color: var(--buttons-FC);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#create_and_edit_page button:hover {
+  background-color: var(--buttons-BC-hover);
+}
+
+/*-------- REPORT --------*/
+.report_body {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--Report-BC);
+  color: var(--Report-FC);
+}
+
+.report_body th {
+  background-color: var(--Report-heading-BC);
+  padding: 8px;
+  text-align: left;
+}
+
+.report_body td {
+  padding: 8px;
+  border: 1px solid var(--Report-border-C);
+  border: 1px solid #040303;
+}
+
+.report_body td:first-child {
+  width: 30%;
+}
+
+#chart_expense_record {
+  width: 100%;
+  height: 300px; 
+}
+
+/*-------- Loading --------*/
+#loading-bar {
+  width: 100%;
+  height: 0;
+  background-color: #f88282;
+  border-radius: 10px;
+  overflow: hidden;
+  position: fixed;
+  margin-top: 0px;
+  animation: redLineAnimation 5s linear infinite;
+}
+
+@keyframes redLineAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/*-------- pop up --------*/
+#message_display {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color:var(--body-BC);
+  color: #090808;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: opacity 0.5s ease-in-out; 
+  display: none;
+  border:2px solid black;
+}

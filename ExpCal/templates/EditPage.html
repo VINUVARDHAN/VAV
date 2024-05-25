@@ -1,0 +1,34 @@
+<div id="edit_page">
+    <h2>Edit Record</h2>
+    <table>
+        <tr>
+            <td><b>Category name</b></td>
+            <td>
+                <select id="edit_category_id" data-category-id={{ category_id }}>
+                    <option value="{{ category_id }}" selected disabled>{{ category_name }}</option>
+                    {% for category in categories %}
+                        {% if category_id != category.category_id %}
+                            <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Additional Info</b></td>
+            <td><input id="edit_additional_info" type="text" value="{{ additional_info }}" data-additional_info={{ additional_info }}></td>
+        </tr>
+        <tr>
+            <td><b>Amount</b></td>
+            <td><input id="edit_amount" type="number" value="{{ amount }}" data-amount={{ amount }}></td>
+        </tr>
+        <tr>
+            <td><b>Date</b></td>
+            <td><input id="edit_date" type="date" value="{{ date }}" data-date={{ date }}></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="edit_save" onclick="recordUtil.editRecord({{ expId }})">SAVE</button></td>
+        </tr>
+    </table>    
+</div>

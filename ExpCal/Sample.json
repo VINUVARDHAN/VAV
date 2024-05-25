@@ -1,0 +1,70 @@
+{
+    "yearWiseExpense" : {
+        "2022" : {
+            "monthWiseExpense" : {
+                "jan" : {
+                    "categoryWiseExpense" : {
+                        "food" : 21321,
+                        "rent" : 21342
+                    },
+                    "otherDetails" :{
+                        "totalExpense" : 12123
+                    }
+                },
+                "Feb" : {
+                    "categoryWiseExpense" : {
+                        "food" : 21321,
+                        "rent" : 21342
+                    },
+                    "otherDetails" :{
+                        "totalExpense" : 12123
+                    }
+                }
+            },
+            "otherDetails" :{
+                "totalExpense" : 12123,
+                "categoryWiseExpense" : {
+                    "food" : 1231,
+                    "others" : 232
+                }
+            }
+        },
+        "2023" : {
+            "monthWiseExpense" : {
+                "jan" : {
+                    "categoryWiseExpense" : {
+                        "food" : 21321,
+                        "rent" : 21342
+                    },
+                    "otherDetails" :{
+                        "totalExpense" : 12123
+                    }
+                },
+                "Feb" : {
+                    "categoryWiseExpense" : {
+                        "food" : 21321,
+                        "rent" : 21342
+                    },
+                    "otherDetails" :{
+                        "totalExpense" : 12123
+                    }
+                }
+            },
+            "otherDetails" :{
+                "totalExpense" : 12123,
+                "categoryWiseExpense" : {
+                    "food" : 1231,
+                    "others" : 232
+                }
+            }
+        }
+    },
+    "otherDetails" :{
+        "totalExpense" : 12123,
+        "categoryWiseExpense" : {
+            "food" : 1231,
+            "others" : 232
+        }
+    }
+
+}
