@@ -14,3 +14,5 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "VAV.settings")
 
 application = get_wsgi_application()
+# why to declare app is vercel read app variable instead of application
+app = application
