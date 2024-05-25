@@ -25,7 +25,7 @@ SECRET_KEY = '(-pu@b51zj8_a&+%fr$lqc52ek^kg#t+6fl)v2lh!ya_=+z%te'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1']
 
 
 # Application definition
@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'VAV.wsgi.application'
-BASEURL = "http://127.0.0.1:6969"
+BASEURL = "http://127.0.0.1:8000"
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -145,7 +145,8 @@ USE_TZ = True
 # Static and media configurations for each app
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ExpTracker/static'),
+    ('VAV', os.path.join(BASE_DIR, 'VAV', 'static')),
+    ('ExpCal', os.path.join(BASE_DIR, 'ExpCal', 'static')),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static') 
