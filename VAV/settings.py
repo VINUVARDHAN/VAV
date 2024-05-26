@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'VAV.wsgi.application'
-BASEURL = "http://127.0.0.1:8000"
+BASEURL = "https://vav-be57kotgg-vinay-kumar-v-cs-projects.vercel.app"
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
