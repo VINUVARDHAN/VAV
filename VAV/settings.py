@@ -149,7 +149,7 @@ STATICFILES_DIRS = [
     ('ExpCal', os.path.join(BASE_DIR, 'ExpCal', 'static')),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static') 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 
 
 
