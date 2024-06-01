@@ -21,7 +21,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "VAV/wsgi.py"
+        "dest": "VAV/VAV/wsgi.py"
       }
     ]
   }
